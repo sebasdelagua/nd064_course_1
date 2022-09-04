@@ -1,0 +1,9 @@
+apiVersion: v1
+name: techtrends
+description: A Tech Trends application
+keywords:
+- techtrends
+version: 1.0.0
+maintainers:
+- name: Sebastian M 
+  email: migliorisisj@gmail.com
