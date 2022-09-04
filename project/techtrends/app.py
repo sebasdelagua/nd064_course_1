@@ -81,11 +81,22 @@ def create():
 # Define the healthz endpoint
 @app.route('/healthz')
 def healthz():
-    response = app.response_class(
-            response=json.dumps({"result":"OK - healthy"}),
-            status=200,
-            mimetype='application/json'
-    )
+    connection = get_db_connection()
+    table_exists = connection.execute(''' SELECT count(name) FROM sqlite_master WHERE type='table' AND name='posts' ''')
+    
+    if table_exists.fetchone()[0]==1 : 
+        response = app.response_class(
+                response=json.dumps({"result":"OK - healthy"}),
+                status=200,
+                mimetype='application/json'
+        )
+    else:
+        response = app.response_class(
+                response=json.dumps({"result":"ERROR - unhealthy"}),
+                status=500,
+                mimetype='application/json'
+        )
+
     return response
 
 # Define the metrics endpoint
