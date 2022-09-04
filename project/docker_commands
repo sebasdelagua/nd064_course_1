@@ -1,11 +1,68 @@
 ## Docker commands used to build the application 
-# TODO: insert the docker build command
+
+```
+docker build -t techtrends .
+```
 
 ## Docker commands used to run the application
-# TODO: insert the docker run command
+
+```
+docker run -p 7111:3111 -d techtrends
+```
 
 ## Docker commands used to get the application logs
-# TODO: insert the docker logs command
+
+```
+ docker logs reverent_hawking -f
+```
 
 ## Logs from the container running the TechTrends application
-# TODO: paste logs from the Docker container 
+
+```
+ * Serving Flask app 'app' (lazy loading)
+ * Environment: production
+   WARNING: This is a development server. Do not use it in a production deployment.
+   Use a production WSGI server instead.
+ * Debug mode: off
+WARNING:werkzeug: * Running on all addresses.
+   WARNING: This is a development server. Do not use it in a production deployment.
+INFO:werkzeug: * Running on http://172.17.0.4:3111/ (Press CTRL+C to quit)
+INFO:werkzeug:172.16.16.11 - - [04/Sep/2022 19:33:03] "GET / HTTP/1.1" 200 -
+INFO:werkzeug:172.16.16.11 - - [04/Sep/2022 19:33:03] "GET /static/css/main.css HTTP/1.1" 200 -
+INFO:werkzeug:172.16.16.11 - - [04/Sep/2022 19:33:03] "GET /favicon.ico HTTP/1.1" 404 -
+INFO:app:Article "2020 CNCF Annual Report" retrieved!
+INFO:werkzeug:172.16.16.11 - - [04/Sep/2022 19:33:04] "GET /1 HTTP/1.1" 200 -
+INFO:werkzeug:172.16.16.11 - - [04/Sep/2022 19:33:04] "GET /static/css/main.css HTTP/1.1" 304 -
+INFO:werkzeug:172.16.16.11 - - [04/Sep/2022 19:33:06] "GET / HTTP/1.1" 200 -
+INFO:werkzeug:172.16.16.11 - - [04/Sep/2022 19:33:06] "GET /static/css/main.css HTTP/1.1" 304 -
+INFO:werkzeug:172.16.16.11 - - [04/Sep/2022 19:33:45] "GET / HTTP/1.1" 200 -
+INFO:werkzeug:172.16.16.11 - - [04/Sep/2022 19:33:45] "GET /static/css/main.css HTTP/1.1" 304 -
+
+INFO:app:Article "2020 CNCF Annual Report" retrieved!
+INFO:werkzeug:172.16.16.11 - - [04/Sep/2022 19:36:49] "GET /1 HTTP/1.1" 200 -
+INFO:werkzeug:172.16.16.11 - - [04/Sep/2022 19:36:50] "GET /static/css/main.css HTTP/1.1" 304 -
+INFO:app:The "About Us" page is retrieved.
+INFO:werkzeug:172.16.16.11 - - [04/Sep/2022 19:36:51] "GET /about HTTP/1.1" 200 -
+INFO:werkzeug:172.16.16.11 - - [04/Sep/2022 19:36:51] "GET /static/css/main.css HTTP/1.1" 304 -
+INFO:werkzeug:172.16.16.11 - - [04/Sep/2022 19:36:52] "GET /create HTTP/1.1" 200 -
+INFO:werkzeug:172.16.16.11 - - [04/Sep/2022 19:36:52] "GET /static/css/main.css HTTP/1.1" 304 -
+INFO:app:A new article asdsad was created.
+INFO:werkzeug:172.16.16.11 - - [04/Sep/2022 19:36:54] "POST /create HTTP/1.1" 302 -
+INFO:werkzeug:172.16.16.11 - - [04/Sep/2022 19:36:54] "GET / HTTP/1.1" 200 -
+INFO:werkzeug:172.16.16.11 - - [04/Sep/2022 19:36:54] "GET /static/css/main.css HTTP/1.1" 304 -
+INFO:app:The "About Us" page is retrieved.
+INFO:werkzeug:172.16.16.11 - - [04/Sep/2022 19:36:56] "GET /about HTTP/1.1" 200 -
+INFO:werkzeug:172.16.16.11 - - [04/Sep/2022 19:36:56] "GET /static/css/main.css HTTP/1.1" 304 -
+INFO:werkzeug:172.16.16.11 - - [04/Sep/2022 19:36:57] "GET /create HTTP/1.1" 200 -
+INFO:werkzeug:172.16.16.11 - - [04/Sep/2022 19:36:57] "GET /static/css/main.css HTTP/1.1" 304 -
+INFO:app:A new article asdsad was created.
+INFO:werkzeug:172.16.16.11 - - [04/Sep/2022 19:36:59] "POST /create HTTP/1.1" 302 -
+INFO:werkzeug:172.16.16.11 - - [04/Sep/2022 19:36:59] "GET / HTTP/1.1" 200 -
+INFO:werkzeug:172.16.16.11 - - [04/Sep/2022 19:36:59] "GET /static/css/main.css HTTP/1.1" 304 -
+INFO:app:Article "KubeCon + CloudNativeCon 2021" retrieved!
+INFO:werkzeug:172.16.16.11 - - [04/Sep/2022 19:37:00] "GET /2 HTTP/1.1" 200 -
+INFO:werkzeug:172.16.16.11 - - [04/Sep/2022 19:37:00] "GET /static/css/main.css HTTP/1.1" 304 -
+INFO:app:Article "222" not found!
+INFO:werkzeug:172.16.16.11 - - [04/Sep/2022 19:37:19] "GET /222 HTTP/1.1" 200 -
+INFO:werkzeug:172.16.16.11 - - [04/Sep/2022 19:37:19] "GET /static/css/main.css HTTP/1.1" 304 -
+```
