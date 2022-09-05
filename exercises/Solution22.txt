@@ -1,0 +1,17 @@
+# create the namespace 
+kubectl create ns demo
+
+# label the namespace
+kubectl label ns demo tier=test
+
+# create the nginx-alpine deployment 
+kubectl -n demo create deploy nginx-alpine --image=nginx:alpine -r=3
+
+# label the deployment
+kubectl -n demo label deploy nginx-alpine app=nginx tag=alpine
+
+# expose the nginx-alpine deployment, which will create a service
+kubectl -n demo expose deploy nginx-alpine --port=8111
+
+# create a config map
+kubectl -n demo create cm nginx-version --from-literal=version=alpine

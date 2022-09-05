@@ -1,0 +1,85 @@
+# create the namespace 
+kubectl create ns demo --dry-run=client -o yaml
+
+# label the namespace
+kubectl label ns demo tier=test --dry-run=client -o yaml
+
+# create the nginx-alpine deployment 
+kubectl -n demo create deploy nginx-alpine --image=nginx:alpine -r=3 --dry-run=client -o yaml
+
+# label the deployment
+kubectl -n demo label deploy nginx-alpine app=nginx tag=alpine
+
+# expose the nginx-alpine deployment, which will create a service
+kubectl -n demo expose deploy nginx-alpine --port=8111 --dry-run=client -o yaml
+
+# create a config map
+kubectl -n demo create cm nginx-version --from-literal=version=alpine --dry-run=client -o yaml
+
+
+apiVersion: v1
+kind: Namespace
+metadata:
+  creationTimestamp: null
+  name: demo
+  labels:
+    tier: test
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    app: nginx
+    tag: alpine
+  name: nginx-alpine
+  namespace: demo
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: nginx
+      tag: alpine
+  strategy: 
+    rollingUpdate:
+      maxSurge: 25%
+      maxUnavailable: 25%
+    type: RollingUpdate
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: nginx
+        tag: alpine
+    spec:
+      containers:
+      - image: nginx:alpine
+        name: nginx
+---
+apiVersion: v1
+kind: Service
+metadata:
+  creationTimestamp: null
+  labels:
+    app: nginx
+    tag: alpine
+  name: nginx-alpine
+  namespace: demo
+spec:
+  ports:
+  - port: 8111
+    protocol: TCP
+    targetPort: 8111
+  selector:
+    app: nginx
+    tag: alpine
+  type: ClusterIP
+---
+apiVersion: v1
+data:
+  version: alpine
+kind: ConfigMap
+metadata:
+  creationTimestamp: null
+  name: nginx-version
+  namespace: demo
