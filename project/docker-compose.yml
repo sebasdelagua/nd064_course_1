@@ -1,0 +1,9 @@
+services:
+  techtrends:
+    image: xx/techtrends:${IMAGE_TAG:-latest}
+    container_name: ${APP_NAME:-techtrends}
+    build:
+      context: ./
+      dockerfile: Dockerfile
+    ports:
+      - 3111:3111
